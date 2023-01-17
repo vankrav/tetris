@@ -4,7 +4,7 @@ Tetris::Tetris() {
 
     srand(unsigned(time(NULL))); // инициализация генератора случайных чисел
     score = 0;
-
+    blockIsBomb = true;
     //заполняем поле нулями
     for(int i = 0; i < MAXX; i++) {
         for(int j = 0; j < MAXY; j++) {
@@ -38,6 +38,8 @@ void Tetris::createBlock() {
     block.centerX = nextBlock.centerX;
     block.centerY = nextBlock.centerY;
     block.ID = nextBlock.ID;
+    blockIsBomb = !blockIsBomb;
+    block.isBomb = blockIsBomb;
 
     createNextBlock(); // создаем следующий блок
 }
@@ -88,9 +90,22 @@ bool Tetris::moveToRight() {
 
 bool Tetris::moveToBottom() {
     if(!move(0,1)) {
+         if(nextBlock.isBomb) {
         // если столкнулись с другими блоками
         blockToBox(); // копировать блок в обычное поле
-        killLines(); // пробуем удалить строки, если они есть
+         }
+         else {
+            box[block.x[0]][block.y[0]] = 0;
+            box[block.x[0]][block.y[0]+1] = 0;
+         }
+        score = 0;
+        for (int i = 0; i < MAXX; i++) {
+            for (int j = MAXY - 8; j < MAXY; j++) {
+                score += box[i][j];
+            }
+        }
+        score = (int)((float)score / (8 * MAXX) * 100);
+        //killLines(); // пробуем удалить строки, если они есть
         //проверим, не закончилась ли игра
         if(isEnd()) {
             return false;
@@ -175,7 +190,8 @@ int Tetris::getNextHeight() {
 void Tetris::createNextBlock() {
     int centerX = (MAXX - 1) / 2; // координата центра х
     int ID = rand() % 7; // генерация id случайной фигуры
-
+    nextBlock.isBomb = !blockIsBomb;
+    if(!nextBlock.isBomb) {
     //создание блоков по id
     switch (ID) {
     case 0:
@@ -286,6 +302,20 @@ void Tetris::createNextBlock() {
         break;
 
     }
+    }
+    else {
+        nextBlock.x[0] = centerX;
+        nextBlock.x[1] = centerX;
+        nextBlock.x[2] = centerX;
+        nextBlock.x[3] = centerX;
+        nextBlock.y[0] = -2;
+        nextBlock.y[1] = -2;
+        nextBlock.y[2] = -2;
+        nextBlock.y[3] = -2;
+        nextBlock.centerX = centerX;
+        nextBlock.centerY = 2;
+    }
+
 }
 
 bool Tetris::move(int dx, int dy) {
@@ -333,6 +363,7 @@ void Tetris::blockToBox() {
 }
 
 bool Tetris::isRotatable() {
+    if(!block.isBomb) {
     int newX[COUNT], newY[COUNT];
 
     for (int i = 0; i < COUNT; i++) {
@@ -367,6 +398,10 @@ bool Tetris::isRotatable() {
 
 
     return true;
+    }
+    else {
+        return false;
+    }
 }
 
 int Tetris::getFirstFullLine() {

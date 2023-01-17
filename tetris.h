@@ -4,15 +4,16 @@
 #include <cstdlib> // для случайных чисел подключаем
 #include <ctime>
 
-#define MAXX 8 // количество блоков в ширину
-#define MAXY 10 // количество блоков в длину
+#define MAXX 10 // количество блоков в ширину
+#define MAXY 12 // количество блоков в длину
 #define NEXTMAXX 6 // количество блоков в ширину в окне "далее"
 #define NEXTMAXY 6 // количество блоков в длину в окне "далее"
-#define WIDTH 55 // ширина ячейки
-#define HEIGHT 55 // высота ячейки
+#define WIDTH 50 // ширина ячейки
+#define HEIGHT 50 // высота ячейки
 #define INTERVAL 0 // интервал между яцейками
 #define COUNT 4 // количество блоков формирующих сторону общего для всех фигур блока
 #define PATH_TO_WALL_IMG ":/okno2.png"
+#define PATH_TO_SKY_IMG ":/sky.jpg"
 
 
 // структура для общего блока, блок состоит из боксов (ячеек), в блоке находится фигура
@@ -23,6 +24,7 @@ struct Block {
     int centerX; // х координата центра
     int centerY; // у координата центра
     int ID; // фигура
+    bool isBomb = false;
 };
 
 class Tetris {
@@ -32,6 +34,7 @@ public:
     Block getNextBlock(); // получить следующий блок
     Block getBlock(); // получить блок
     int getScore(); // получить счет
+
     int getBox(int x, int y); // статус блока на этой позиции, есть или нет
     bool rotate(); // повернуть
     bool moveToLeft(); // двинуть влево
@@ -56,6 +59,7 @@ private:
     int score; // счет
     Block block; // текущий блок
     Block nextBlock; // следующий блок
+    bool blockIsBomb;
     int box[MAXX][MAXY]; // система координат сетки (1 - есть, 0 - нету)
 
 

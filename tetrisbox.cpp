@@ -52,7 +52,12 @@ void TetrisBox::paintEvent(QPaintEvent *event) {
 
     painter.setBrush(brush);
     painter.setPen(pen);
+    int lineY = (MAXY-8) * (HEIGHT + INTERVAL) - INTERVAL;
+    int lineX = MAXX * (WIDTH + INTERVAL) - INTERVAL;
+    painter.drawImage(QRect(0, 0, Tetris::getWidth(), Tetris::getHeight()), QImage(PATH_TO_SKY_IMG));
 
+
+    painter.drawLine(QLine(0,lineY, lineX, lineY));
     // Рисуем содержимое поля
     for (int i = 0; i < MAXX; i++) {
        for(int j = 0; j < MAXY; j++) {
