@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/">
+        <file>okno.jpg</file>
+        <file>okno.png</file>
+        <file>okno2.jpg</file>
+        <file>okno2.png</file>
+    </qresource>
+</RCC>
