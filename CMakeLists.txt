@@ -26,7 +26,7 @@ set(PROJECT_SOURCES
         nexttetrisbox.cpp
         nexttetrisbox.h
         resource.qrc
-        test_tetris.cpp
+
 
 )
 
