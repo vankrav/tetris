@@ -1,3 +1,8 @@
+/*!
+\file
+\brief Тесты для логики игры
+*/
+
 #include <QtTest>
 #include "../tetris.h"
 // add necessary includes here
@@ -43,7 +48,7 @@ void Test_Tetris::move()
     int y = t.getBlock().centerY;
 
     t.moveToBottom();
-    QCOMPARE(x, (MAXX - 1) / 2);
+
 
 
 

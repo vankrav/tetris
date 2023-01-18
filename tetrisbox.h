@@ -1,3 +1,7 @@
+/*!
+\file
+\brief Заголовочный файл с описанием поля игры
+*/
 #ifndef TETRISBOX_H
 #define TETRISBOX_H
 
@@ -11,14 +15,18 @@
 #include <QLabel>
 
 #include "tetris.h"
+/*!
+    \brief  Класс реализующий визуализацию окна игры
 
+
+*/
 class TetrisBox : public QWidget {
   Q_OBJECT
 
 public:
     explicit TetrisBox(QWidget *parent = nullptr);
-    void updateTetris(Tetris tetris); // обновить
-    void paintEvent(QPaintEvent *event); // нарисовать
+    void updateTetris(Tetris tetris); ///< обновить состояние игры
+    void paintEvent(QPaintEvent *event); ///< нарисовать поле
 
 signals:
 

@@ -1,3 +1,7 @@
+/*!
+\file
+\brief поле для следующей фигуры
+*/
 #include "nexttetrisbox.h"
 
 

@@ -1,3 +1,7 @@
+/*!
+\file
+\brief описание поля игры
+*/
 #include "tetrisbox.h"
 
 QString randomImage(QString *path) {

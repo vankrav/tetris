@@ -1,20 +1,27 @@
-#include "tetris.h"
+/*!
+\file
+\brief  логика игры
+*/
 
+#include "tetris.h"
+/*!
+    \brief
+*/
 Tetris::Tetris() {
 
-    srand(unsigned(time(NULL))); // инициализация генератора случайных чисел
+    srand(unsigned(time(NULL))); ///Инициализирует генератор случайных чисел.
     score = 0;
     best = 0;
     speed = 300;
     blockIsBomb = true;
-    //заполняем поле нулями
+    ///Заполняет поле нулями.
     for(int i = 0; i < MAXX; i++) {
         for(int j = 0; j < MAXY; j++) {
             box[i][j] = 0;
         }
     }
 
-    //заполняем текущий блок -1
+    ///Заполняет текущий блок минус единицами.
     for(int i = 0; i < COUNT; i++) {
         block.x[i] = -1;
         block.y[i] = -1;
@@ -24,14 +31,17 @@ Tetris::Tetris() {
     block.centerY = -1;
     block.ID = 0;
 
-    createNextBlock(); //  создать следующий блок
+    createNextBlock(); ///Создает следующий блок.
 
 }
 
+/*!
+Создает блок, копируя следующий
+*/
 
 void Tetris::createBlock() {
 
-    //копируем nextBlock в block
+
     for(int i = 0; i < COUNT; i++) {
         block.x[i] = nextBlock.x[i];
         block.y[i] = nextBlock.y[i];
@@ -43,7 +53,7 @@ void Tetris::createBlock() {
     blockIsBomb = !blockIsBomb;
     block.isBomb = blockIsBomb;
 
-    createNextBlock(); // создаем следующий блок
+    createNextBlock();
 }
 
 
@@ -141,21 +151,9 @@ bool Tetris::isEnd() {
     return false;
 }
 
-void Tetris::killLines(){
-    int count = 0; // количество удаленных строк
-    int fullLine = 0; // полная строка, над которой проводится операция
-    while((fullLine = getFirstFullLine()) != -1) {
-        for(int j = fullLine; j > 0; j--) {
-            for(int i = 0; i < MAXX; i++) {
-                //копируем в текущую строку верхнюю строчку
-                box[i][j] = box[i][j - 1];
-            }
-        }
-        count++;
-    }
 
-    score += count * count * 10;
-}
+
+
 
 void Tetris::clear(){
 
@@ -333,7 +331,15 @@ void Tetris::createNextBlock() {
     }
 
 }
+/*!
+Перемещение фигуры
 
+
+\param dx Перемещение по х
+\param dy Перемещение по у
+
+
+*/
 bool Tetris::move(int dx, int dy) {
 
     int newX[COUNT], newY[COUNT];

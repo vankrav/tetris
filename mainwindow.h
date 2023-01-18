@@ -1,3 +1,8 @@
+
+/*!
+\file
+\brief Заголовочный файл для главного окна
+*/
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
@@ -26,17 +31,20 @@
 #define STATUS_OFF 2 // игра не начата
 #define STATUS_END 3 // игра кончилась
 
+/*!
+\brief Класс для главного окна
 
+*/
 class MainWindow : public QMainWindow {
     Q_OBJECT
 
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-    void keyPressEvent(QKeyEvent *event);
-    void changeEvent(QKeyEvent *event);
-    void updateScore();
-    void updateStatusLabel(int state);
+    void keyPressEvent(QKeyEvent *event);///<обработчик нажатий клавиш на клавиатуре
+    void changeEvent(QKeyEvent *event); ///<пауза при сворачивании окна
+    void updateScore();///< обновить счет
+
 
 public slots:
     void onTimer();
@@ -49,7 +57,6 @@ private:
     NextTetrisBox *nextTetrisBox;
     QGridLayout *mainLayout;
     QLabel *scoreLabel;
-    QLabel *statusLabel;
     QLabel *aboutLabel;
     QLabel *nextLabel;
     QLabel *controlLabel;

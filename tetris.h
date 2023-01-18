@@ -1,3 +1,8 @@
+/*!
+\file
+\brief Заголовочный файл с описанием логики игры
+*/
+
 #ifndef TETRIS_H
 #define TETRIS_H
 
@@ -22,48 +27,58 @@
 
 // структура для общего блока, блок состоит из боксов (ячеек), в блоке находится фигура
 
+/*!
+    \brief  Структура для хранения фигуры
+
+    Данная структура хранит в себе одну из 7 страндартных фигур или бомбу
+*/
 struct Block {
-    int x[COUNT]; // х координаты ячеек
-    int y[COUNT]; // у координата ячеек
-    int centerX; // х координата центра
-    int centerY; // у координата центра
-    int ID; // фигура
-    bool isBomb = false;
+    int x[COUNT]; ///< х координаты ячеек
+    int y[COUNT]; ///< у координата ячеек
+    int centerX; ///< х координата центра
+    int centerY; ///< у координата центра
+    int ID; ///< фигура
+    bool isBomb = false; ///< является ли фигура бомбой
 };
+
+/*!
+    \brief  Класс с реализованной логикой тетриса.
+
+    В данном классе реализованна логика игры.
+*/
 
 class Tetris {
 public:
-    Tetris(); // конструктор
-    void createBlock(); // создать блок
-    Block getNextBlock(); // получить следующий блок
-    Block getBlock(); // получить блок
-    int getScore(); // получить счет
-    int getSpeed();
-    void setSpeed(int s);
-    int bestScore(int score = 0);
-    int getBox(int x, int y); // статус блока на этой позиции, есть или нет
-    bool rotate(); // повернуть
-    bool moveToLeft(); // двинуть влево
-    bool moveToRight(); // двинуть вправо
-    bool moveToBottom(); // двинуть вниз
-    bool isEnd(); // конец игры, блок дошел до верха
-    void killLines(); // удалить линии при заполнении
-    void clear(); // все очистить
+    Tetris(); ///< конструктор
+    void createBlock(); ///< создать блок
+    Block getNextBlock(); ///< получить следующий блок
+    Block getBlock(); ///< получить блок
+    int getScore(); ///< получить счет
+    int getSpeed(); ///< получить врямя, за которое смеяются карды
+    void setSpeed(int s); ///< получить счет
+    int bestScore(int score = 0); ///< получить лучший результат
+    int getBox(int x, int y); ///< статус блока на этой позиции поля, есть или нет
+    bool rotate(); ///< повернуть фигуру
+    bool moveToLeft(); ///< двинуть влево фигуру
+    bool moveToRight(); ///< двинуть вправо фигуру
+    bool moveToBottom(); ///< двинуть вниз фигуру
+    bool isEnd(); ///< конец игры, фигура коснулась верхней границы поля
+    void clear(); ///< очистить поле
 
 
 
-    static int getWidth(); // получить ширину окна
-    static int getHeight(); // получить высоту окна
-    static int getNextWidth(); // получить ширину окна "далее"
-    static int getNextHeight(); // получить высоту окна "далее"
+    static int getWidth(); ///< получить ширину окна
+    static int getHeight(); ///< получить высоту окна
+    static int getNextWidth(); ///< получить ширину окна "далее"
+    static int getNextHeight(); ///< получить высоту окна "далее"
 
 
 private:
-    void createNextBlock(); // создать следующий блок
-    bool move(int dx, int dy); // можно ли двинуть туда?
-    void blockToBox(); // перенос данных из блока в бокс
-    bool isRotatable(); // можно ли повернуть?
-    int getFirstFullLine(); // получить первую целую строку
+    void createNextBlock(); ///< создать следующий блок
+    bool move(int dx, int dy); ///< можно ли двинуть туда?
+    void blockToBox(); ///< перенос данных из блока в бокс
+    bool isRotatable(); ///< можно ли повернуть?
+    int getFirstFullLine(); ///< получить первую целую строку
 
     int speed;
     int score; // счет

@@ -1,3 +1,7 @@
+/*!
+\file
+\brief главное окно
+*/
 #include "mainwindow.h"
 
 
@@ -7,7 +11,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
     nextTetrisBox = new NextTetrisBox;
     mainLayout = new QGridLayout;
     scoreLabel = new QLabel("Счет: ");
-    statusLabel = new QLabel("игра не начата ");
     nextLabel = new QLabel("следующая фигура");
     aboutLabel = new QLabel("Цель игры: построить девятиэтажку без дырок, \nпотому что в доме с дырами, гуляют сквозняки)");
     controlLabel = new QLabel("Управление: \nw - поворот фигуры\na - влево\ns - вниз\nd - вправо\nj - пауза\nh - запуск\nk - очистить поле\n\n");
@@ -45,7 +48,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
         nextTetrisBox->updateNextTetris(tetris);
         updateScore();
         status = STATUS_ON;
-        updateStatusLabel(status);
+
         setWindowTitle("Типовой панельный тетрис - [игра идет]");
         timer->start(tetris.getSpeed());
     }
@@ -112,7 +115,7 @@ if(status != STATUS_OFF) {
         if(status == STATUS_PAUSE) {
             timer->start(tetris.getSpeed());
             status = STATUS_ON;
-            updateStatusLabel(status);
+
             setWindowTitle("Типовой панельный тетрис - [игра идет]");
         }
         else if(status == STATUS_OFF){
@@ -121,7 +124,7 @@ if(status != STATUS_OFF) {
             nextTetrisBox->updateNextTetris(tetris);
             updateScore();
             status = STATUS_ON;
-            updateStatusLabel(status);
+
             setWindowTitle("Типовой панельный тетрис - [игра идет]");
             timer->start(tetris.getSpeed());
         }
@@ -135,7 +138,7 @@ if(status != STATUS_OFF) {
 
             timer->stop();
             status = STATUS_PAUSE;
-            updateStatusLabel(status);
+
             setWindowTitle("Типовой панельный тетрис - [игра на паузе]");
         }
 
@@ -151,7 +154,7 @@ if(status != STATUS_OFF) {
             nextTetrisBox->updateNextTetris(tetris);
             updateScore();
             status = STATUS_OFF;
-            updateStatusLabel(status);
+
             setWindowTitle("Типовой панельный тетрис - [игру еще не начали]");
         }
 
@@ -164,21 +167,6 @@ void MainWindow::updateScore() {
 }
 
 
-void MainWindow::updateStatusLabel(int state) {
-    switch (state) {
-    case 0:
-        statusLabel->setText("игра идет");
-        break;
-    case 1:
-        statusLabel->setText("игра на паузе");
-        break;
-    case 2:
-        statusLabel->setText("игра еще не начата");
-        break;
-    default:
-        break;
-    }
-}
 
 void MainWindow::changeEvent(QKeyEvent *event){
     if(event->type() != QEvent::WindowStateChange) {
@@ -214,7 +202,7 @@ void MainWindow::onTimer() {
                 nextTetrisBox->updateNextTetris(tetris);
                 updateScore();
                 status = STATUS_OFF;
-                updateStatusLabel(status);
+
                 setWindowTitle("Типовой панельный тетрис - [игру еще не начали]");
         }
 
