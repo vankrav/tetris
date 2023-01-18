@@ -2,12 +2,15 @@ cmake_minimum_required(VERSION 3.5)
 
 project(tetris VERSION 0.1 LANGUAGES CXX)
 
+enable_testing()
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+find_package(QT NAMES Qt5 Qt6 CONFIG REQUIRED COMPONENTS Core Test)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core Test)
 
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
@@ -23,9 +26,11 @@ set(PROJECT_SOURCES
         nexttetrisbox.cpp
         nexttetrisbox.h
         resource.qrc
+        test_tetris.cpp
 
-        mainwindow.ui
 )
+
+
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(tetris
@@ -67,3 +72,5 @@ install(TARGETS tetris
 if(QT_VERSION_MAJOR EQUAL 6)
     qt_finalize_executable(tetris)
 endif()
+
+add_subdirectory(Test)
