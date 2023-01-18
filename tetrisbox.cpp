@@ -1,5 +1,9 @@
 #include "tetrisbox.h"
 
+QString randomImage(QString *path) {
+    return *path + QString::number(rand() % 5) + ".png";
+}
+
 TetrisBox::TetrisBox(QWidget *parent) : QWidget(parent) {
 
     //инициализируем блок
@@ -48,11 +52,11 @@ void TetrisBox::paintEvent(QPaintEvent *event) {
     pen.setColor(QColor(255, 255, 255));
 
     brush.setStyle(Qt::SolidPattern);
-    brush.setColor(QColor(255, 255, 255));
+    brush.setColor(QColor(200, 200, 200));
 
     painter.setBrush(brush);
     painter.setPen(pen);
-    int lineY = (MAXY-8) * (HEIGHT + INTERVAL) - INTERVAL;
+    int lineY = (MAXY-9) * (HEIGHT + INTERVAL) - INTERVAL;
     int lineX = MAXX * (WIDTH + INTERVAL) - INTERVAL;
     painter.drawImage(QRect(0, 0, Tetris::getWidth(), Tetris::getHeight()), QImage(PATH_TO_SKY_IMG));
 
@@ -66,20 +70,29 @@ void TetrisBox::paintEvent(QPaintEvent *event) {
                int y = j * HEIGHT + j * INTERVAL;
               // painter.drawRect(x, y, WIDTH, HEIGHT);
 
-              painter.drawImage(QRect(x, y, WIDTH, HEIGHT), QImage(PATH_TO_WALL_IMG));
+              painter.drawImage(QRect(x, y, WIDTH, HEIGHT),
+                                QImage(PATH_TO_WALL+ QString::number((i+j*j+3*i) % 5+1) + ".png"));
            }
        }
     }
 
     // Рисует содержимое в блоке
+
     for(int i = 0; i < COUNT; i++) {
         int x = block.x[i];
         int y = block.y[i];
         int x1 = x * (WIDTH + INTERVAL);
         int y1 = y * (HEIGHT + INTERVAL);
-        //painter.drawRect(x1, y1, WIDTH, HEIGHT);
-        painter.drawImage(QRect(x1, y1, WIDTH, HEIGHT), QImage(PATH_TO_WALL_IMG));
+        if(!block.isBomb) {
+
+            painter.drawRect(x1, y1, WIDTH, HEIGHT);
+        }
+        else {
+             painter.drawImage(QRect(x1, y1, WIDTH, HEIGHT), QImage(PATH_TO_BOMB_IMG));
+             break;
+        }
     }
+
 
 }
 

@@ -12,8 +12,10 @@
 #define HEIGHT 50 // высота ячейки
 #define INTERVAL 0 // интервал между яцейками
 #define COUNT 4 // количество блоков формирующих сторону общего для всех фигур блока
-#define PATH_TO_WALL_IMG ":/okno2.png"
-#define PATH_TO_SKY_IMG ":/sky.jpg"
+#define PATH_TO_WALL ":/src/img/okno/okno"
+#define PATH_TO_SKY_IMG ":/src/img/sky/sky.jpg"
+#define PATH_TO_BOMB_IMG ":/src/img/bomb/bomb.png"
+#define SPEED 500
 
 
 // структура для общего блока, блок состоит из боксов (ячеек), в блоке находится фигура

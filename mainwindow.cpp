@@ -92,7 +92,7 @@ void MainWindow::keyPressEvent(QKeyEvent *event){
         //start
 
         if(status == STATUS_PAUSE) {
-            timer->start(500);
+            timer->start(SPEED);
             status = STATUS_ON;
             updateStatusLabel(status);
             setWindowTitle("good");
@@ -105,7 +105,7 @@ void MainWindow::keyPressEvent(QKeyEvent *event){
             status = STATUS_ON;
             updateStatusLabel(status);
             setWindowTitle("good");
-            timer->start(500);
+            timer->start(SPEED);
         }
     }
 
