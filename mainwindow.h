@@ -19,6 +19,7 @@
 #include "tetris.h"
 #include "tetrisbox.h"
 #include "nexttetrisbox.h"
+#include "menu.h"
 
 
 #define STATUS_ON 0 // игра идет
@@ -40,17 +41,21 @@ public:
 
 public slots:
     void onTimer();
+    void onClick();
+
 private:
 
     int status;
     Tetris tetris;
+
     QTimer *timer;
     TetrisBox *tetrisBox;
     NextTetrisBox *nextTetrisBox;
+    Menu * menu;
     QGridLayout *mainLayout;
     QLabel *scoreLabel;
     QLabel *statusLabel;
-    QLabel *imageLabel;
+
 
 
 
