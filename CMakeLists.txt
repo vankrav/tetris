@@ -23,8 +23,7 @@ set(PROJECT_SOURCES
         nexttetrisbox.cpp
         nexttetrisbox.h
         resource.qrc
-        menu.cpp
-        menu.h
+
         mainwindow.ui
 )
 

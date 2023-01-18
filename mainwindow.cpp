@@ -1,29 +1,26 @@
 #include "mainwindow.h"
 
 
-
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
 
-    menu = new Menu;
-    QGridLayout *menuLayout = menu->menuLayout;
     tetrisBox = new TetrisBox;
+
     nextTetrisBox = new NextTetrisBox;
     mainLayout = new QGridLayout;
     scoreLabel = new QLabel("Счет: ");
     statusLabel = new QLabel("игра не начата ");
+
     mainLayout->setHorizontalSpacing(20);
     mainLayout->setVerticalSpacing(20);
     mainLayout->setAlignment(Qt::AlignCenter);
-    //mainLayout->addWidget(menu,0,0,14,1);
-    mainLayout->addLayout(menuLayout, 0,0);
-//    mainLayout->addWidget(tetrisBox, 0, 0, 14, 1);
-//    mainLayout->addWidget(nextTetrisBox, 1, 1, 14, 1);
-//    mainLayout->addWidget(scoreLabel,15, 0);
-//    mainLayout->addWidget(statusLabel,15, 1);
-
+    mainLayout->addWidget(tetrisBox, 0, 0, 14, 1);
+    mainLayout->addWidget(nextTetrisBox, 1, 1, 14, 1);
+    mainLayout->addWidget(scoreLabel,15, 0);
+    mainLayout->addWidget(statusLabel,15, 1);
+    //mainLayout->addWidget(imageLabel,16, 1);
     QWidget *widget = new QWidget(this);
-    setCentralWidget(widget);
     widget->setLayout(mainLayout);
+    setCentralWidget(widget);
 
     setPalette(Qt::gray);
     QScreen *screen = QGuiApplication::primaryScreen();
@@ -32,17 +29,13 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
     move(width, 5);
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(onTimer()));
-    mainLayout->connect(menu->easyLevelButton,SIGNAL(clicked()), SLOT(onClick()));
+
     status = STATUS_OFF;
 }
 
 MainWindow::~MainWindow()
 {
 
-}
-
-void MainWindow::onClick() {
-    mainLayout->removeItem(menu->menuLayout);
 }
 
 void MainWindow::keyPressEvent(QKeyEvent *event){
