@@ -52,9 +52,9 @@ void NextTetrisBox::paintEvent(QPaintEvent *event) {
     for(int i = 0; i < COUNT; i++) {
         int x = nextBlock.x[i];
         int y = nextBlock.y[i];
-        int x1 = x * (WIDTH + INTERVAL);
-        int y1 = y * (HEIGHT + INTERVAL);
-        painter.drawRect(x1, y1, WIDTH, HEIGHT);
+        int x1 = x * (NEXTWIDTH+ INTERVAL);
+        int y1 = y * (NEXTHEIGHT+ INTERVAL);
+        painter.drawRect(x1, y1, NEXTWIDTH, NEXTHEIGHT);
     }
 
 }

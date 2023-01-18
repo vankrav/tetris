@@ -10,6 +10,8 @@
 #define NEXTMAXY 6 // количество блоков в длину в окне "далее"
 #define WIDTH 50 // ширина ячейки
 #define HEIGHT 50 // высота ячейки
+#define NEXTWIDTH 30 // ширина ячейки
+#define NEXTHEIGHT 30 // высота ячейки
 #define INTERVAL 0 // интервал между яцейками
 #define COUNT 4 // количество блоков формирующих сторону общего для всех фигур блока
 #define PATH_TO_WALL ":/src/img/okno/okno"
@@ -36,7 +38,9 @@ public:
     Block getNextBlock(); // получить следующий блок
     Block getBlock(); // получить блок
     int getScore(); // получить счет
-
+    int getSpeed();
+    void setSpeed(int s);
+    int bestScore(int score = 0);
     int getBox(int x, int y); // статус блока на этой позиции, есть или нет
     bool rotate(); // повернуть
     bool moveToLeft(); // двинуть влево
@@ -46,10 +50,13 @@ public:
     void killLines(); // удалить линии при заполнении
     void clear(); // все очистить
 
+
+
     static int getWidth(); // получить ширину окна
     static int getHeight(); // получить высоту окна
     static int getNextWidth(); // получить ширину окна "далее"
     static int getNextHeight(); // получить высоту окна "далее"
+
 
 private:
     void createNextBlock(); // создать следующий блок
@@ -58,10 +65,12 @@ private:
     bool isRotatable(); // можно ли повернуть?
     int getFirstFullLine(); // получить первую целую строку
 
+    int speed;
     int score; // счет
+    int best;
+    bool blockIsBomb;
     Block block; // текущий блок
     Block nextBlock; // следующий блок
-    bool blockIsBomb;
     int box[MAXX][MAXY]; // система координат сетки (1 - есть, 0 - нету)
 
 

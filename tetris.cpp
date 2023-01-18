@@ -4,6 +4,8 @@ Tetris::Tetris() {
 
     srand(unsigned(time(NULL))); // инициализация генератора случайных чисел
     score = 0;
+    best = 0;
+    speed = 300;
     blockIsBomb = true;
     //заполняем поле нулями
     for(int i = 0; i < MAXX; i++) {
@@ -51,6 +53,14 @@ Block Tetris::getNextBlock() {
 
 Block Tetris::getBlock() {
     return block;
+}
+
+int Tetris::getSpeed() {
+    return speed;
+}
+
+void Tetris::setSpeed(int s) {
+    speed = s;
 }
 
 int Tetris::getScore() {
@@ -105,6 +115,8 @@ bool Tetris::moveToBottom() {
             }
         }
         score = (int)((float)score / (8 * MAXX) * 100);
+        bestScore(score);
+
         //killLines(); // пробуем удалить строки, если они есть
         //проверим, не закончилась ли игра
         if(isEnd()) {
@@ -169,6 +181,10 @@ void Tetris::clear(){
 
     createNextBlock(); //  создать следующий блок
 }
+int Tetris::bestScore(int score) {
+    best = score > best ? score : best;
+    return best;
+}
 
 int Tetris::getWidth() {
     return MAXX * WIDTH + (MAXX - 1) * INTERVAL;
@@ -179,11 +195,11 @@ int Tetris::getHeight() {
 }
 
 int Tetris::getNextWidth() {
-     return NEXTMAXX * WIDTH + (NEXTMAXX - 1) * INTERVAL;
+     return NEXTMAXX * NEXTWIDTH + (NEXTMAXX - 1) * INTERVAL;
 }
 
 int Tetris::getNextHeight() {
-    return NEXTMAXY * HEIGHT + (NEXTMAXY - 1) * INTERVAL;
+    return NEXTMAXY * NEXTHEIGHT + (NEXTMAXY - 1) * INTERVAL;
 }
 
 

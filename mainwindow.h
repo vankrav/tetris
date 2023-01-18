@@ -50,7 +50,11 @@ private:
     QGridLayout *mainLayout;
     QLabel *scoreLabel;
     QLabel *statusLabel;
-    QLabel *imageLabel;
+    QLabel *aboutLabel;
+    QLabel *nextLabel;
+    QLabel *controlLabel;
+
+
 
 
 
