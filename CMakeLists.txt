@@ -10,6 +10,7 @@ set(CMAKE_AUTORCC ON)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_PREFIX_PATH {Qt:QT_INSTALL_PREFIX})
 
 find_package(Qt6 REQUIRED COMPONENTS Widgets)
 qt_standard_project_setup()
