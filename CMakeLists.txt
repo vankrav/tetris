@@ -9,7 +9,7 @@ endif()
 
 set(CMAKE_CONFIGURATION_TYPES "Release;RelWithDebInfo" CACHE STRING "" FORCE)
 
-#======================= INCLUSION OF Qt =======================#
+
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
@@ -17,7 +17,7 @@ set(CMAKE_PREFIX_PATH $ENV{QTDIR})
 find_package(Qt6Core REQUIRED)
 find_package(Qt6Widgets REQUIRED)
 
-#=================== INCLUSION OF Project Files ====================#
+
 set(SOURCES
         main.cpp
         mainwindow.cpp
@@ -30,8 +30,7 @@ set(SOURCES
         nexttetrisbox.h
         resource.qrc
 )
-============ SETUP EXECTUABLE ====================#
-# Enable debug logging on RELWITHDEBINFO configuration
+
 set_property(DIRECTORY APPEND PROPERTY COMPILE_DEFINITIONS
     $<$<CONFIG:RELWITHDEBINFO>:QT_MESSAGELOGCONTEXT>
 )
@@ -46,7 +45,7 @@ elseif(UNIX)
 endif()
 
 
-#===================== LINKING LIBRARIES =======================#
+
 target_link_libraries(tetris Qt6::Widgets)
 
 add_subdirectory(Test)
