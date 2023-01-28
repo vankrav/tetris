@@ -1,0 +1,15 @@
+1.	Копируем репозиторий в нужную вам папку
+
+git clone https://github.com/vankrav/tetris.git
+
+2.	Заполняем
+<source-dir> - директория с исходными файлами
+<build-dir> - директория сборки
+<prefix-path> - путь до папки bin в qt. (Пример: Users/ivankravchuk/Qt/6.4.0/macos)
+
+
+cmake -DCMAKE_PREFIX_PATH=<prefix-path -S <source-dir> -B <build-dir>
+
+3.	Собираем
+
+cmake –build <build-dir>
