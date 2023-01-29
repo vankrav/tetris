@@ -1,8 +1,7 @@
 Установите свой prefix_path
 
-
-cmake -DCMAKE_PREFIX_PATH="C:\Qt\6.4.2\mingw_64"  -DCMAKE_CXX_COMPILER=C:/Qt/Tools/mingw1120_64/bin/g++.exe -DCMAKE_MAKE_PROGRAM=C:\Qt\Tools\Ninja\ninja -G "Ninja" -S . -B build
-
-cmake --build build
-
-cmake --install
+git clone https://github.com/vankrav/tetris 
+cd tetris 
+cmake -DCMAKE_PREFIX_PATH="C:\Qt\6.4.2\mingw_64"  -DCMAKE_CXX_COMPILER=C:/Qt/Tools/mingw1120_64/bin/g++.exe -DCMAKE_MAKE_PROGRAM=C:\Qt\Tools\Ninja\ninja -G "Ninja" -S . -B build 
+cmake --build build 
+cmake --install build 
