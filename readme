@@ -1,6 +1,6 @@
-Установите свой prefix_path
-
 windows
+
+Установите свой CMAKE_PREFIX_PATH
 
 git clone https://github.com/vankrav/tetris 
 cd tetris 
@@ -9,6 +9,8 @@ cmake --build build
 cmake --install build 
 
 macos
+
+Установите свой CMAKE_PREFIX_PATH и CMAKE_MAKE_PROGRAM
 
 git clone https://github.com/vankrav/tetris 
 cd tetris
