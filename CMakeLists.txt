@@ -13,7 +13,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 
 find_package(Qt6 REQUIRED COMPONENTS Widgets)
-qt_standard_project_setup()
+
 
 
 set(PROJECT_SOURCES
@@ -50,3 +50,11 @@ endif()
 
 
 add_subdirectory(Test)
+install(
+	TARGETS
+		tetris
+	DESTINATION
+		bin
+	COMPONENT
+		tetris
+)
